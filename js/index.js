@@ -1,3 +1,5 @@
+// JavaScript Document
+
 // 1. When a user presses the record button, start recording actions
 // 2. When recording, push an object with the important data to the array
 //			- Clear the array before starting a new recording
@@ -8,42 +10,64 @@
 
 
 
-// DOM elements
-const $startAndStop = document.getElementById('startAndStop')
-const $replayRecording = document.getElementById('replayRecording')
-const $cursor = document.getElementById('cursor')
+let isRecording = true;
+let mouseIsDragged = false;
+let mouseMoves = [];
+let timer;
 
-// Variables/data
-let isRecording = true
-let mouseMoves = [
-	// Examples:
-	// {x: 123, y:212, t:0},
-	// {x: 220, y:317, t:100},
-	// {x: 126, y:218, t:145},
-]
+const $startAndStop = document.getElementById('startAndStop');
+const $replayRecording = document.getElementById('replayRecording');
 
-// Each movement of the mouse
-window.addEventListener('mousemove', (event) => {
-	if (isRecording) {
-		console.log(event.clientX, event.clientY, event.timeStamp)
-		// Record the data to the Array
-	  // this is one of many ways to prevent recording, consider you may also use removeEventListener() as well
+function insertMouseRecords (obj) {
+	mouseMoves.push(obj)
+}
 
-	}
-})
+function startRecord (e) {
+    
+    mouseMoves = [];
+	mouseIsDragged = true;
 
-// Start/stop the recording
+	const mouseTimer = function() {
+
+		if (mouseIsDragged) {
+			if (isRecording) {
+
+                let xCoord = e.clientX;
+                let yCoord = e.clientY;
+                let timeStamp = e.timeStamp;
+
+                insertMouseRecords({
+                    'x-coord' : xCoord,
+                    'y-coord' : yCoord,
+                    'timestamp' : timeStamp
+                });
+                console.log(e);
+                console.log(e.clientX, e.clientY);
+                console.log (mouseMoves);
+                // Record the data to the array
+
+			}
+		}
+
+	};
+    
+    mouseTimer();
+
+};
+
+
+let toggleRecord = false;
+
 $startAndStop.addEventListener('click', (event) => {
-	
+    
+    toggleRecord = !toggleRecord;
+    if (toggleRecord) {
+		window.addEventListener('mousemove', startRecord, false);
+	} else {
+        window.removeEventListener('mousemove', startRecord, false);
+    }
+});
 
-})
-
-// Replay recording
 $replayRecording.addEventListener('click', (event) => {
-	
-	// Set the x and y for each mouse move recorded (123, 456 are examples)
-	// $cursor.style.setProperty('--x', 123)
-	// $cursor.style.setProperty('--y', 456)
-
-})
-
+	//$startAndStop.removeEventListener('mousemove', startRecord);
+});
