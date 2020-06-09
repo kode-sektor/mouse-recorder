@@ -25,7 +25,6 @@ function insertMouseRecords (obj) {
 
 function startRecord (e) {
     
-    mouseMoves = [];
 	mouseIsDragged = true;
 
 	const mouseTimer = function() {
@@ -40,11 +39,11 @@ function startRecord (e) {
                 insertMouseRecords({
                     'x-coord' : xCoord,
                     'y-coord' : yCoord,
-                    'timestamp' : timeStamp
+                    'timestamp' : Math.round(timeStamp)
                 });
-                console.log(e);
+/*                console.log(e);
                 console.log(e.clientX, e.clientY);
-                console.log (mouseMoves);
+                console.log (mouseMoves);*/
                 // Record the data to the array
 
 			}
@@ -61,9 +60,24 @@ const replayRecord = (e) => {
     $cursor.style.display = 'block';
     
     
+    let duration = mouseMoves.length / 5;
+    console.log(mouseMoves.length);
     
-/*    $cursor.style.setProperty('--x', 123);
-	$cursor.style.setProperty('--y', 456);*/
+    function start(counter){
+        if(counter < mouseMoves.length){
+            setTimeout(function(){
+                $cursor.style.setProperty('--x', mouseMoves[counter]["x-coord"]);
+                $cursor.style.setProperty('--y', mouseMoves[counter]["y-coord"]); 
+                counter++;
+                console.log (counter);
+                start(counter);
+            }, duration);
+        }
+    }
+    start(0);
+
+    // Clear Array
+    // mouseMoves = [];
     
 };
 
@@ -75,6 +89,7 @@ $startAndStop.addEventListener('click', (event) => {
     if (toggleRecord) {
 		window.addEventListener('mousemove', startRecord, false);
 	} else {
+        $replayRecording.disabled = false;
         window.removeEventListener('mousemove', startRecord, false);
     }
 });
