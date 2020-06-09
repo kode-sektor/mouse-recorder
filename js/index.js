@@ -55,11 +55,14 @@ function startRecord (e) {
 
 };
 
+const replayRecord = (e) => {
+	alert (e.type);
+};
+
 
 let toggleRecord = false;
 
-$startAndStop.addEventListener('click', (event) => {
-    
+$startAndStop.addEventListener('click', (event) => {   
     toggleRecord = !toggleRecord;
     if (toggleRecord) {
 		window.addEventListener('mousemove', startRecord, false);
@@ -69,5 +72,5 @@ $startAndStop.addEventListener('click', (event) => {
 });
 
 $replayRecording.addEventListener('click', (event) => {
-	//$startAndStop.removeEventListener('mousemove', startRecord);
+	replayRecord(event);
 });
