@@ -64,20 +64,22 @@ const replayRecord = (e) => {
     console.log(mouseMoves.length);
     
     function start(counter){
-        if(counter < mouseMoves.length){
+        if(counter < (mouseMoves.length - 1)){
             setTimeout(function(){
                 $cursor.style.setProperty('--x', mouseMoves[counter]["x-coord"]);
                 $cursor.style.setProperty('--y', mouseMoves[counter]["y-coord"]); 
                 counter++;
+                console.log(mouseMoves[counter]["x-coord"]);
                 console.log (counter);
                 start(counter);
             }, duration);
+        } else {
+            // Clear mouseMoves coordinates for next click
+            alert ('cleared');
+            mouseMoves = [];
         }
     }
     start(0);
-
-    // Clear Array
-    // mouseMoves = [];
     
 };
 
