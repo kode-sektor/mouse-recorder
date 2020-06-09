@@ -41,18 +41,14 @@ function startRecord (e) {
                     'y-coord' : yCoord,
                     'timestamp' : Math.round(timeStamp)
                 });
-/*                console.log(e);
+                console.log(e);
                 console.log(e.clientX, e.clientY);
-                console.log (mouseMoves);*/
+                console.log (mouseMoves);
                 // Record the data to the array
-
 			}
 		}
-
 	};
-    
     mouseTimer();
-
 };
 
 const replayRecord = (e) => {
@@ -69,8 +65,7 @@ const replayRecord = (e) => {
                 $cursor.style.setProperty('--x', mouseMoves[counter]["x-coord"]);
                 $cursor.style.setProperty('--y', mouseMoves[counter]["y-coord"]); 
                 counter++;
-                console.log(mouseMoves[counter]["x-coord"]);
-                console.log (counter);
+
                 start(counter);
             }, duration);
         } else {
@@ -80,7 +75,6 @@ const replayRecord = (e) => {
         }
     }
     start(0);
-    
 };
 
 
