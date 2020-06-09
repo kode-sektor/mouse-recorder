@@ -17,6 +17,7 @@ let timer;
 
 const $startAndStop = document.getElementById('startAndStop');
 const $replayRecording = document.getElementById('replayRecording');
+const $cursor = document.getElementById('cursor');
 
 function insertMouseRecords (obj) {
 	mouseMoves.push(obj)
@@ -56,7 +57,14 @@ function startRecord (e) {
 };
 
 const replayRecord = (e) => {
-	alert (e.type);
+    // First make alternate cursor visible
+    $cursor.style.display = 'block';
+    
+    
+    
+/*    $cursor.style.setProperty('--x', 123);
+	$cursor.style.setProperty('--y', 456);*/
+    
 };
 
 

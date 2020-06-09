@@ -1,8 +1,5 @@
 #cursor {
-	width: 0.75em;
-	height: 0.75em;
-	border-radius: 50%;
-	background-color: black;
+    display: none;
 
 	--x: 0;
 	--y: 0;
