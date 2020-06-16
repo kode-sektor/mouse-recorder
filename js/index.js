@@ -48,6 +48,7 @@ function startRecord (e) {
 			}
 		}
 	};
+
     mouseTimer();
 };
 
@@ -55,13 +56,18 @@ const replayRecord = (e) => {
     // First make alternate cursor visible
     $cursor.style.display = 'block';
     
-    
     let duration = mouseMoves.length / 5;
     console.log(mouseMoves.length);
     
     function start(counter){
         if(counter < (mouseMoves.length - 1)){
             setTimeout(function(){
+                /*
+                const mouseMoves = [
+                    {"x-coord": 95, "y-coord": 20, "timestamp": 236238623},
+                    {"x-coord": 47, "y-coord": 17, "timestamp": 236235423}
+                ]
+                */
                 $cursor.style.setProperty('--x', mouseMoves[counter]["x-coord"]);
                 $cursor.style.setProperty('--y', mouseMoves[counter]["y-coord"]); 
                 counter++;
@@ -70,7 +76,6 @@ const replayRecord = (e) => {
             }, duration);
         } else {
             // Clear mouseMoves coordinates for next click
-            alert ('cleared');
             mouseMoves = [];
         }
     }
@@ -83,7 +88,21 @@ let toggleRecord = false;
 $startAndStop.addEventListener('click', (event) => {   
     toggleRecord = !toggleRecord;
     if (toggleRecord) {
-		window.addEventListener('mousemove', startRecord, false);
+        let mouseMove = false;
+        let mouseMoveE = '';
+         
+        window.onmousemove = (e) => {
+          mouseMove = true;
+          mouseMoveE = e;
+        };
+         
+        setInterval( function() {
+            if (mouseMove) {
+                mouseMove = false;
+                startRecord(mouseMoveE);
+            }
+        }, 250 );
+		// window.addEventListener('mousemove', startRecord, false);
 	} else {
         $replayRecording.disabled = false;
         window.removeEventListener('mousemove', startRecord, false);
