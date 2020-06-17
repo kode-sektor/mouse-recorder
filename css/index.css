@@ -5,6 +5,7 @@
     width: 100vw;
     background: #d7d7d7;
     flex-flow: column;
+    font-family: Dosis, 'Gill Sans';
 }
 header {
     padding: 10px;
@@ -12,6 +13,7 @@ header {
     display: block;
     width: 100%;
     text-align: center;
+    text-transform: uppercase;
 }
 #cursor {
     display: none;

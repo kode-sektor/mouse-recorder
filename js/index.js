@@ -88,10 +88,12 @@ const replayRecord = (e) => {
 
 let toggleRecord = false;
 
-$startAndStop.addEventListener('click', (event) => {   // Listen to click of 'Start/Stop'
+const initRecord = () => {
+    
     toggleRecord = !toggleRecord;   // Toggle the click
+    
     if (toggleRecord) {
-        (event.target).textContent = 'Stop Recording';
+        $startAndStop.textContent = 'Stop Recording';
         let mouseMove = false;
         let mouseMoveE = '';
          
@@ -108,11 +110,22 @@ $startAndStop.addEventListener('click', (event) => {   // Listen to click of 'St
         }, 250 );
 		// window.addEventListener('mousemove', startRecord, false);
 	} else {
-        (event.target).textContent = 'Start Recording';
+        $startAndStop.textContent = 'Start Recording';
         $replayRecording.disabled = false;
         $replayRecording.classList.remove('not-allowed');
         window.removeEventListener('mousemove', startRecord, false);
     }
+    
+}
+
+document.body.onkeyup = function(e){
+    if(e.keyCode == 32){
+        initRecord();
+    }
+}
+
+$startAndStop.addEventListener('click', (event) => {   // Listen to click of 'Start/Stop'
+    initRecord();
 });
 
 $replayRecording.addEventListener('click', (event) => {
