@@ -70,6 +70,7 @@ header {
 }
 .button-set button:last-child.not-allowed {
     cursor: not-allowed;
+    opacity: .3
 }
 
 /*.button-set button:hover, .button-set button:focus {

@@ -57,6 +57,9 @@ const replayRecord = (e) => {
     $cursor.style.display = 'block';
     
     let duration = mouseMoves.length / 5;
+    duration = duration * 50;
+    alert (duration);
+
     console.log(mouseMoves.length);
     
     function start(counter){
