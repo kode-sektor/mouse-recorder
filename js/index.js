@@ -58,7 +58,6 @@ const replayRecord = (e) => {
     
     let duration = mouseMoves.length / 5;
     duration = duration * 50;
-    alert (duration);
 
     console.log(mouseMoves.length);
     
@@ -118,6 +117,7 @@ const initRecord = () => {
     
 }
 
+// Trigger recording with 'spacebar' key
 document.body.onkeyup = function(e){
     if(e.keyCode == 32){
         initRecord();
