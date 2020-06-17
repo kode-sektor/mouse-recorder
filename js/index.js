@@ -99,7 +99,7 @@ const initRecord = () => {
     // Set interval to trap a function that will be passed
     
     if (toggleRecord) { 
-
+        isRecording = true;
         $startAndStop.textContent = 'Stop Recording';
         $replayRecording.disabled = true;
         $replayRecording.classList.add('not-allowed');
@@ -112,12 +112,11 @@ const initRecord = () => {
         };
          
         setInterval( function() {   // Prevent event from rapidly firing
-            if (mouseMove) {
+            if (mouseMove && isRecording) {
                 mouseMove = false;
                 startRecord(mouseMoveE);
             }
         }, 250 );
-		// window.addEventListener('mousemove', startRecord, false);
 	} else {
         
         // On the 2nd click of 'Start Recording',
@@ -128,7 +127,8 @@ const initRecord = () => {
         $startAndStop.textContent = 'Start Recording';
         $replayRecording.disabled = false;
         $replayRecording.classList.remove('not-allowed');
-        startRecord = function() {};
+        window.removeEventListener('mousemove', startRecord, false);
+        isRecording = false;
     }
     
 }
