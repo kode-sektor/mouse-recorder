@@ -91,9 +91,12 @@ let toggleRecord = false;
 const initRecord = () => {
     
     toggleRecord = !toggleRecord;   // Toggle the click
-    
+
     if (toggleRecord) {
+        alert ('Record Started')
         $startAndStop.textContent = 'Stop Recording';
+        $replayRecording.disabled = true;
+        $replayRecording.classList.add('not-allowed');
         let mouseMove = false;
         let mouseMoveE = '';
          
@@ -110,6 +113,7 @@ const initRecord = () => {
         }, 250 );
 		// window.addEventListener('mousemove', startRecord, false);
 	} else {
+        alert ('Record Stopped');
         $startAndStop.textContent = 'Start Recording';
         $replayRecording.disabled = false;
         $replayRecording.classList.remove('not-allowed');
