@@ -85,8 +85,8 @@ const replayRecord = (e) => {
 
 let toggleRecord = false;
 
-$startAndStop.addEventListener('click', (event) => {   
-    toggleRecord = !toggleRecord;
+$startAndStop.addEventListener('click', (event) => {   // Listen to click of 'Start/Stop'
+    toggleRecord = !toggleRecord;   // Toggle the click
     if (toggleRecord) {
         let mouseMove = false;
         let mouseMoveE = '';
@@ -96,7 +96,7 @@ $startAndStop.addEventListener('click', (event) => {
           mouseMoveE = e;
         };
          
-        setInterval( function() {
+        setInterval( function() {   // Prevent event from rapidly firing
             if (mouseMove) {
                 mouseMove = false;
                 startRecord(mouseMoveE);
@@ -105,6 +105,7 @@ $startAndStop.addEventListener('click', (event) => {
 		// window.addEventListener('mousemove', startRecord, false);
 	} else {
         $replayRecording.disabled = false;
+        $replayRecording.classList.remove('not-allowed');
         window.removeEventListener('mousemove', startRecord, false);
     }
 });

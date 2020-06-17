@@ -9,9 +9,17 @@
 		<link rel="stylesheet" href="css/index.css">
 	</head>
 	<body>
-		<img id="cursor" src="img/hand-cursor.png"="alternate cursor" width="25" height="25"/>
-		<button id="startAndStop">Start/Stop Recording</button>
-		<button id="replayRecording" disabled>Replay the Recording</button>
+        <div class="page">
+            <header>
+                <h1>Mouse Recorder</h1>
+            </header>
+            <img id="cursor" src="img/hand-cursor.png" alt="alternate cursor" width="25" height="25"/>
+            <ul class="button-set"> 
+                <button id="startAndStop">Start/Stop Recording</button>
+                <button id="replayRecording" disabled class="not-allowed">Replay the Recording</button>
+            </ul>
+        </div>
+
 		<script src="js/index.js"></script>
 	</body>
 </html>
