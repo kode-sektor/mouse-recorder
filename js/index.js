@@ -32,6 +32,7 @@ function startRecord (e) {
 		if (mouseIsDragged) {
 			if (isRecording) {
 
+                // Get mouse coordinates
                 let xCoord = e.clientX;
                 let yCoord = e.clientY;
                 let timeStamp = e.timeStamp;
@@ -121,6 +122,7 @@ const initRecord = () => {
 document.body.onkeyup = function(e){
     if(e.keyCode == 32){
         initRecord();
+        alert('okay');
     }
 }
 
