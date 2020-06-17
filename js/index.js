@@ -122,7 +122,6 @@ const initRecord = () => {
 document.body.onkeyup = function(e){
     if(e.keyCode == 32){
         initRecord();
-        alert('okay');
     }
 }
 
@@ -132,4 +131,5 @@ $startAndStop.addEventListener('click', (event) => {   // Listen to click of 'St
 
 $replayRecording.addEventListener('click', (event) => {
 	replayRecord(event);
+    $replayRecording.classList.add('not-allowed');    
 });
