@@ -91,6 +91,7 @@ let toggleRecord = false;
 $startAndStop.addEventListener('click', (event) => {   // Listen to click of 'Start/Stop'
     toggleRecord = !toggleRecord;   // Toggle the click
     if (toggleRecord) {
+        (event.target).textContent = 'Stop Recording';
         let mouseMove = false;
         let mouseMoveE = '';
          
@@ -107,6 +108,7 @@ $startAndStop.addEventListener('click', (event) => {   // Listen to click of 'St
         }, 250 );
 		// window.addEventListener('mousemove', startRecord, false);
 	} else {
+        (event.target).textContent = 'Start Recording';
         $replayRecording.disabled = false;
         $replayRecording.classList.remove('not-allowed');
         window.removeEventListener('mousemove', startRecord, false);
