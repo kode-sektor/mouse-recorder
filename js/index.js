@@ -23,7 +23,7 @@ function insertMouseRecords (obj) {
 	mouseMoves.push(obj)
 }
 
-function startRecord (e) {
+let startRecord = (e) => {
     
 	mouseIsDragged = true;
 
@@ -91,8 +91,14 @@ let toggleRecord = false;
 const initRecord = () => {
     
     toggleRecord = !toggleRecord;   // Toggle the click
-
-    if (toggleRecord) {
+    
+    // On first click of 'Start Rercording': 
+    // Change its text to 'Stop Recording',
+    // Add a class to 'Replay recording' button to indicate its not clickable
+    // Listen to mousemove event
+    // Set interval to trap a function that will be passed
+    
+    if (toggleRecord) { 
 
         $startAndStop.textContent = 'Stop Recording';
         $replayRecording.disabled = true;
@@ -113,26 +119,35 @@ const initRecord = () => {
         }, 250 );
 		// window.addEventListener('mousemove', startRecord, false);
 	} else {
+        
+        // On the 2nd click of 'Start Recording',
+        // Change text on "Start / Stop Recording" button to 'Start Recording'
+        // Add a class to 'Replay recording' button to indicate its now clickable
+        // 
 
         $startAndStop.textContent = 'Start Recording';
         $replayRecording.disabled = false;
         $replayRecording.classList.remove('not-allowed');
-        window.removeEventListener('mousemove', startRecord, false);
+        startRecord = function() {};
     }
     
 }
 
 // Trigger recording with 'spacebar' key
 document.body.onkeyup = function(e){
-    if(e.keyCode == 32){
+    if (e.keyCode == 32){
         initRecord();
     }
 }
 
-$startAndStop.addEventListener('click', (event) => {   // Listen to click of 'Start/Stop'
+// Listen to click of 'Start/Stop' and run function that 
+// tracks the coordinates of the mouse movements
+$startAndStop.addEventListener('click', (event) => {   
     initRecord();
 });
 
+// Listen to click of 'Replay Recording' and add run function
+// that moves custom mouse with exact previous stored coordinates
 $replayRecording.addEventListener('click', (event) => {
 	replayRecord(event);
     $replayRecording.classList.add('not-allowed');    
